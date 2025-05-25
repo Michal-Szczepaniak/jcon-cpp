@@ -43,7 +43,7 @@ void JsonRpcWebSocket::setupSocket()
             this, &JsonRpcWebSocket::dataReady);
 
     void (QWebSocket::*errorPtr)(QAbstractSocket::SocketError) =
-        &QWebSocket::errorOccurred;
+        &QWebSocket::error;
     connect(m_socket, errorPtr, this,
             [this](QAbstractSocket::SocketError error) {
                 emit socketError(m_socket, error);

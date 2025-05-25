@@ -377,9 +377,9 @@ bool JsonRpcServer::doCall(QObject* object,
     }
 
     const char* return_type_name = meta_method.typeName();
-    QMetaType return_type = QMetaType::fromName(return_type_name);
-    if (return_type.id() != QMetaType::Void) {
-        return_value = QVariant(return_type, nullptr);
+    int return_type_id = QMetaType::type(return_type_name);
+    if (return_type_id != QMetaType::Void) {
+        return_value = QVariant(return_type_id, nullptr);
     }
 
     QGenericReturnArgument return_argument(
